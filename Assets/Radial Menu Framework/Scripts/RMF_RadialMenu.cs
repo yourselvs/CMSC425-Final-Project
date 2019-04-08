@@ -59,6 +59,8 @@ public class RMF_RadialMenu : MonoBehaviour {
 
     private PointerEventData pointer;
 
+    private bool isPressed; // whether a button is pressed or not
+
     void Awake() {
 
         pointer = new PointerEventData(EventSystem.current);
@@ -140,7 +142,15 @@ public class RMF_RadialMenu : MonoBehaviour {
 
                     ExecuteEvents.Execute(elements[index].button.gameObject, pointer, ExecuteEvents.submitHandler);
 
-
+                    if(!isPressed)
+                    {
+                        hapticAction.Execute(0, .03f, 180, .15f, handType); //Give haptic feedback for button press
+                        isPressed = true;
+                    }
+                }
+                else
+                {
+                    isPressed = false;
                 }
             }
 
@@ -168,10 +178,12 @@ public class RMF_RadialMenu : MonoBehaviour {
 
             elements[i].highlightThisElement(pointer); //Select this one
 
-            if (previousActiveIndex != i) 
+            if (previousActiveIndex != i)
+            {
                 elements[previousActiveIndex].unHighlightThisElement(pointer); //Deselect the last one.
+            }
             
-
+            hapticAction.Execute(0, .03f, 180, .08f, handType); //Give haptic feedback for new selection
         }
 
         previousActiveIndex = i;
