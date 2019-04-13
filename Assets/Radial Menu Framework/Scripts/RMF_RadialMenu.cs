@@ -114,6 +114,8 @@ public class RMF_RadialMenu : MonoBehaviour {
         bool touching = touchAction.GetState(handType);
         bool pressing = pressAction.GetState(handType);
 
+        Debug.Log(touching);
+
         bool joystickMoved = touching && (location.x != 0.0 || location.y != 0.0);
         //==============================================================================================
 

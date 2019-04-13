@@ -17,27 +17,19 @@ namespace Valve.VR
     public class SteamVR_Input_ActionSet_default : Valve.VR.SteamVR_ActionSet
     {
         
-        public virtual SteamVR_Action_Boolean Press
+        public virtual SteamVR_Action_Boolean GrabPinch
         {
             get
             {
-                return SteamVR_Actions.default_Press;
+                return SteamVR_Actions.default_GrabPinch;
             }
         }
         
-        public virtual SteamVR_Action_Boolean Grip
+        public virtual SteamVR_Action_Boolean GrabGrip
         {
             get
             {
-                return SteamVR_Actions.default_Grip;
-            }
-        }
-        
-        public virtual SteamVR_Action_Pose Pose
-        {
-            get
-            {
-                return SteamVR_Actions.default_Pose;
+                return SteamVR_Actions.default_GrabGrip;
             }
         }
         
@@ -57,6 +49,14 @@ namespace Valve.VR
             }
         }
         
+        public virtual SteamVR_Action_Single Squeeze
+        {
+            get
+            {
+                return SteamVR_Actions.default_Squeeze;
+            }
+        }
+        
         public virtual SteamVR_Action_Boolean HeadsetOnHead
         {
             get
@@ -65,35 +65,27 @@ namespace Valve.VR
             }
         }
         
-        public virtual SteamVR_Action_Single Trigger
+        public virtual SteamVR_Action_Boolean TouchpadPress
         {
             get
             {
-                return SteamVR_Actions.default_Trigger;
+                return SteamVR_Actions.default_TouchpadPress;
             }
         }
         
-        public virtual SteamVR_Action_Boolean TrackpadPress
+        public virtual SteamVR_Action_Boolean TouchpadTouch
         {
             get
             {
-                return SteamVR_Actions.default_TrackpadPress;
+                return SteamVR_Actions.default_TouchpadTouch;
             }
         }
         
-        public virtual SteamVR_Action_Boolean TrackpadTouch
+        public virtual SteamVR_Action_Vector2 TouchpadLocation
         {
             get
             {
-                return SteamVR_Actions.default_TrackpadTouch;
-            }
-        }
-        
-        public virtual SteamVR_Action_Vector2 TrackpadLocation
-        {
-            get
-            {
-                return SteamVR_Actions.default_TrackpadLocation;
+                return SteamVR_Actions.default_TouchpadLocation;
             }
         }
         
