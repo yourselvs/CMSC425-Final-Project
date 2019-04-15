@@ -89,6 +89,14 @@ namespace Valve.VR
             }
         }
         
+        public virtual SteamVR_Action_Boolean PausePress
+        {
+            get
+            {
+                return SteamVR_Actions.default_PausePress;
+            }
+        }
+        
         public virtual SteamVR_Action_Vibration Haptic
         {
             get

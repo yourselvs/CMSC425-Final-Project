@@ -112,7 +112,7 @@ public class RMF_RadialMenu : MonoBehaviour {
         //==============================================================================================
         Vector2 location = locationAction.GetAxis(handType);
         bool touching = touchAction.GetState(handType);
-        bool pressing = pressAction.GetState(handType);
+        bool pressing = pressAction.GetStateDown(handType);
 
         Debug.Log(touching);
 

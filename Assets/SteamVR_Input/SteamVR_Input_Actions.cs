@@ -35,6 +35,8 @@ namespace Valve.VR
         
         private static SteamVR_Action_Vector2 p_default_TouchpadLocation;
         
+        private static SteamVR_Action_Boolean p_default_PausePress;
+        
         private static SteamVR_Action_Vibration p_default_Haptic;
         
         public static SteamVR_Action_Boolean default_GrabPinch
@@ -109,6 +111,14 @@ namespace Valve.VR
             }
         }
         
+        public static SteamVR_Action_Boolean default_PausePress
+        {
+            get
+            {
+                return SteamVR_Actions.p_default_PausePress.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
         public static SteamVR_Action_Vibration default_Haptic
         {
             get
@@ -129,6 +139,7 @@ namespace Valve.VR
                     SteamVR_Actions.default_TouchpadPress,
                     SteamVR_Actions.default_TouchpadTouch,
                     SteamVR_Actions.default_TouchpadLocation,
+                    SteamVR_Actions.default_PausePress,
                     SteamVR_Actions.default_Haptic};
             Valve.VR.SteamVR_Input.actionsIn = new Valve.VR.ISteamVR_Action_In[] {
                     SteamVR_Actions.default_GrabPinch,
@@ -139,7 +150,8 @@ namespace Valve.VR
                     SteamVR_Actions.default_HeadsetOnHead,
                     SteamVR_Actions.default_TouchpadPress,
                     SteamVR_Actions.default_TouchpadTouch,
-                    SteamVR_Actions.default_TouchpadLocation};
+                    SteamVR_Actions.default_TouchpadLocation,
+                    SteamVR_Actions.default_PausePress};
             Valve.VR.SteamVR_Input.actionsOut = new Valve.VR.ISteamVR_Action_Out[] {
                     SteamVR_Actions.default_Haptic};
             Valve.VR.SteamVR_Input.actionsVibration = new Valve.VR.SteamVR_Action_Vibration[] {
@@ -152,7 +164,8 @@ namespace Valve.VR
                     SteamVR_Actions.default_GrabGrip,
                     SteamVR_Actions.default_HeadsetOnHead,
                     SteamVR_Actions.default_TouchpadPress,
-                    SteamVR_Actions.default_TouchpadTouch};
+                    SteamVR_Actions.default_TouchpadTouch,
+                    SteamVR_Actions.default_PausePress};
             Valve.VR.SteamVR_Input.actionsSingle = new Valve.VR.SteamVR_Action_Single[] {
                     SteamVR_Actions.default_Squeeze};
             Valve.VR.SteamVR_Input.actionsVector2 = new Valve.VR.SteamVR_Action_Vector2[] {
@@ -166,7 +179,8 @@ namespace Valve.VR
                     SteamVR_Actions.default_HeadsetOnHead,
                     SteamVR_Actions.default_TouchpadPress,
                     SteamVR_Actions.default_TouchpadTouch,
-                    SteamVR_Actions.default_TouchpadLocation};
+                    SteamVR_Actions.default_TouchpadLocation,
+                    SteamVR_Actions.default_PausePress};
         }
         
         private static void PreInitActions()
@@ -180,6 +194,7 @@ namespace Valve.VR
             SteamVR_Actions.p_default_TouchpadPress = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/TouchpadPress")));
             SteamVR_Actions.p_default_TouchpadTouch = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/TouchpadTouch")));
             SteamVR_Actions.p_default_TouchpadLocation = ((SteamVR_Action_Vector2)(SteamVR_Action.Create<SteamVR_Action_Vector2>("/actions/default/in/TouchpadLocation")));
+            SteamVR_Actions.p_default_PausePress = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/PausePress")));
             SteamVR_Actions.p_default_Haptic = ((SteamVR_Action_Vibration)(SteamVR_Action.Create<SteamVR_Action_Vibration>("/actions/default/out/Haptic")));
         }
     }
