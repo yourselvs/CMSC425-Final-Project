@@ -9,20 +9,21 @@ public class LaserPointer : MonoBehaviour
     public SteamVR_Behaviour_Pose controllerPose;
     public SteamVR_Action_Boolean teleportAction;
     public GameObject laserPrefab; 
-                                
+
     public Transform cameraRigTransform;
     public GameObject teleportReticlePrefab;
     public Transform headTransform;
     public Vector3 teleportReticleOffset;
     public LayerMask teleportMask;
+    public int maxHitDistance;
 
     private GameObject reticle;
     private Transform teleportReticleTransform;
-    private bool shouldTeleport;
-
+    private bool shouldShow, shouldSpawn, readyToPress;
     private GameObject laser;
     private Transform laserTransform;
     private Vector3 hitPoint;
+    private GameObject spawnPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -37,18 +38,51 @@ public class LaserPointer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (teleportAction.GetState(handType))
+        if (shouldShow)
         {
             RaycastHit hit;
             
-            if (Physics.Raycast(controllerPose.transform.position, transform.forward, out hit, 100, teleportMask))
-                {
+            if (Physics.Raycast(controllerPose.transform.position, transform.forward, out hit, maxHitDistance, teleportMask)) // hit valid target
+            {
                 hitPoint = hit.point;
-                ShowLaser(hit);
+                
+                Renderer rend = laser.GetComponent<Renderer>();
+                rend.material.shader = Shader.Find("Unlit/Color");
+                rend.material.SetColor("_Color", Color.green);
+
+                ShowLaser(hit.distance);
 
                 reticle.SetActive(true);
                 teleportReticleTransform.position = hitPoint + teleportReticleOffset;
-                shouldTeleport = true;
+                shouldSpawn = true;
+            }
+            else if (Physics.Raycast(controllerPose.transform.position, transform.forward, out hit, maxHitDistance)) // hit invalid target 
+            {
+                hitPoint = hit.point;
+
+                Renderer rend = laser.GetComponent<Renderer>();
+                rend.material.shader = Shader.Find("Unlit/Color");
+                rend.material.SetColor("_Color", Color.red);
+
+                ShowLaser(hit.distance);
+
+                reticle.SetActive(true);
+                teleportReticleTransform.position = hitPoint + teleportReticleOffset;
+                shouldSpawn = false;
+            }
+            else // hit air
+            {
+                hitPoint = controllerPose.transform.position + transform.forward * 10;
+
+                Renderer rend = laser.GetComponent<Renderer>();
+                rend.material.shader = Shader.Find("Unlit/Color");
+                rend.material.SetColor("_Color", Color.red);
+
+                ShowLaser(maxHitDistance);
+
+                reticle.SetActive(true);
+                teleportReticleTransform.position = hitPoint + teleportReticleOffset;
+                shouldSpawn = false;
             }
         }
         else
@@ -56,29 +90,39 @@ public class LaserPointer : MonoBehaviour
             laser.SetActive(false);
             reticle.SetActive(false);
         }
-
-        if (teleportAction.GetStateUp(handType) && shouldTeleport)
-        {
-            Teleport();
-        }
     }
 
-    private void ShowLaser(RaycastHit hit)
+    public void LoadSpawn(GameObject spawnPrefab)
+    {
+        this.spawnPrefab = spawnPrefab;
+        shouldShow = true;
+        readyToPress = false;
+    }
+
+    private void ShowLaser(float distance)
     {
         laser.SetActive(true);
         laserTransform.position = Vector3.Lerp(controllerPose.transform.position, hitPoint, .5f);
         laserTransform.LookAt(hitPoint);
         laserTransform.localScale = new Vector3(laserTransform.localScale.x,
                                                 laserTransform.localScale.y,
-                                                hit.distance);
+                                                distance);
     }
 
-    private void Teleport()
+    public void Spawn()
     {
-        shouldTeleport = false;
+        if (shouldSpawn)
+        {
+            Instantiate(spawnPrefab, hitPoint, Quaternion.identity);
+        }
+
+        Deactivate();
+    }
+
+    public void Deactivate()
+    { 
+        shouldShow = false;
+        shouldSpawn = false;
         reticle.SetActive(false);
-        Vector3 difference = cameraRigTransform.position - headTransform.position;
-        difference.y = 0;
-        cameraRigTransform.position = hitPoint + difference;
     }
 }
