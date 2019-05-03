@@ -35,19 +35,26 @@ public class MenuController : MonoBehaviour
     void Start()
     {
         state = MenuState.Inactive;
-        timeScale = Time.timeScale;
-        fixedDeltaTime = Time.fixedDeltaTime;
+        timeScale = 1.0f;
+        fixedDeltaTime = 0.02f * timeScale;
     }
 
     void Update()
     {
         if (pauseAction.GetStateDown(handType))
         {
-            Deactivate();
-            otherMenu.Deactivate();
-            pauseMenu.SetActive(true);
-            Pause();
-            state = MenuState.Paused;
+            if (state == MenuState.Paused)
+            {
+                Cancel();
+            }
+            else
+            {
+                Deactivate();
+                otherMenu.Deactivate();
+                pauseMenu.SetActive(true);
+                Pause();
+                state = MenuState.Paused;
+            }
         }
 
         if (state == MenuState.Inactive &&

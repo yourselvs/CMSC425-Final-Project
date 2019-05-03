@@ -145,7 +145,7 @@ MonoBehaviour:
   lHook: {fileID: 0}
   rHook: {fileID: 0}
   tutorialPrefabs: []
-  sceneToLoad: Playground
+  sceneToLoad: Menu
 --- !u!1 &8014900530957908886
 GameObject:
   m_ObjectHideFlags: 0
@@ -771,7 +771,6 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 1
   m_textAlignment: 514
-  m_isAlignmentEnumConverted: 1
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -798,12 +797,13 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+  m_VertexBufferAutoSizeReduction: 1
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
-    textComponent: {fileID: 0}
+    textComponent: {fileID: 8877968700716453042}
     characterCount: 29
     spriteCount: 0
     spaceCount: 5
@@ -812,12 +812,9 @@ MonoBehaviour:
     lineCount: 2
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
-  m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 8877968700716453053}
   m_subTextObjects:
