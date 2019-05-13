@@ -5,9 +5,11 @@ using UnityEngine;
 public class Targetting : MonoBehaviour
 {
     public Collider range;
+    public float turnSpeed;
 
     private GameObject target;
     private List<GameObject> inRange = new List<GameObject>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,8 +21,9 @@ public class Targetting : MonoBehaviour
     {
         if(inRange.Count > 0)
         {
-            FindClosest();
-            Attack();
+            FindFurthestAlong();
+            Turn();
+            Fire();
         }
     }
     protected void OnTriggerExit(Collider other)
@@ -44,7 +47,31 @@ public class Targetting : MonoBehaviour
         }
     }
 
-    protected void Attack()
+    protected void FindFurthestAlong()
+    {
+        float distance = -1;
+        foreach(GameObject enemy in inRange)
+        {
+            EnemyMovement movement = enemy.GetComponent<EnemyMovement>();
+            float traveled = movement.distanceTraveled;
+            if (distance < movement.distanceTraveled)
+            {
+                distance = traveled;
+                target = enemy;
+            }
+        }
+        Debug.Log("enemy is " + target.name);
+    }
+
+    protected void Turn()
+    {
+        Vector3 targetDirection = target.transform.position - transform.position;
+        float step = turnSpeed * Time.deltaTime;
+        Vector3 turnTowards = Vector3.RotateTowards(transform.forward, targetDirection, step, 0.0f);
+        transform.rotation = Quaternion.LookRotation(turnTowards);
+    }
+
+    protected void Fire()
     {
 
     }
