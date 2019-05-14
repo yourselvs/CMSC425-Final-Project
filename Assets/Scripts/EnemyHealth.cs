@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public int health;
+    public float health;
 
-    public void takeDamage(int damage)
+    public void takeDamage(float damage)
     {
         health -= damage;
+        Debug.Log(health);
     }
 
     // Start is called before the first frame update

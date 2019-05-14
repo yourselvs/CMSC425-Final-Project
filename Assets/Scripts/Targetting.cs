@@ -2,20 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//modeled partially off of the way the turret defense template did targetting and firing.
+//Drew from HitscanAttack, Damager, AttackAffector, and ILauncher
 public class Targetting : MonoBehaviour
 {
     public Collider range;
     public float turnSpeed;
-    public Damager damager;
+    public int damage;
     public enum projectileType
     {
         Hitscan,
-        AOE
+        AOE,
+        Projectile
     }
     public projectileType projectile;
+    public ParticleSystem attackParticle;
+    public float reloadTime = 1f;
+    public GameObject bullet;
+    public GameObject projectilePoint;
 
-    private GameObject target;
+
+    private float myTime = 0.0f;
+    public GameObject target;
     private List<GameObject> inRange = new List<GameObject>();
+    private GameObject shot;
+    private GameObject exp;
 
 
     // Start is called before the first frame update
@@ -27,6 +38,7 @@ public class Targetting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        myTime += Time.deltaTime;
         if(inRange.Count > 0)
         {
             FindFurthestAlong();
@@ -36,12 +48,10 @@ public class Targetting : MonoBehaviour
     }
     protected void OnTriggerExit(Collider other)
     {
-        Debug.Log("Exited");
         var enemy = other.gameObject;
         if(enemy.CompareTag("Enemy"))
         {
             inRange.Remove(enemy);
-            Debug.Log("inRange removed and is now size " + inRange.Count);
         }
     }
 
@@ -51,7 +61,6 @@ public class Targetting : MonoBehaviour
         if (enemy.CompareTag("Enemy"))
         {
             inRange.Add(enemy);
-            Debug.Log("inRange added and is now size " + inRange.Count);
         }
     }
 
@@ -68,7 +77,6 @@ public class Targetting : MonoBehaviour
                 target = enemy;
             }
         }
-        Debug.Log("enemy is " + target.name);
     }
 
     protected void Turn()
@@ -88,10 +96,20 @@ public class Targetting : MonoBehaviour
         EnemyHealth health = target.GetComponent<EnemyHealth>();
         if(projectile == projectileType.Hitscan)
         {
-            health.takeDamage(damager.damage);
+            health.takeDamage(damage * Time.deltaTime);
+            attackParticle.transform.position = transform.position;
+            attackParticle.transform.LookAt(target.transform.position);
+            attackParticle.Play();
+            Debug.Log("boom");
+        } else if (projectile == projectileType.Projectile)
+        {
+            if(myTime > reloadTime)
+            {
+                myTime = 0.0f;
+                shot = Instantiate(bullet, projectilePoint.transform.position, projectilePoint.transform.rotation) as GameObject;
+                shot.SendMessage("Target", target);
+            }
         }
-        
-
         
     }
 }
