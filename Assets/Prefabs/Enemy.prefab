@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4147846284810013866}
   - component: {fileID: 4147846284810013867}
   - component: {fileID: 1792072848251890172}
+  - component: {fileID: 6248222718427024449}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -131,6 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goal: {fileID: 4147846285306087395}
+  distanceTraveled: 0
 --- !u!54 &1792072848251890172
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -147,6 +149,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6248222718427024449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4147846284810013864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62e021e0ef804024e99bfd732ed73f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
 --- !u!1 &4147846285306087399
 GameObject:
   m_ObjectHideFlags: 0
