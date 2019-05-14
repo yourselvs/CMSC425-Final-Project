@@ -6,9 +6,17 @@ public class Targetting : MonoBehaviour
 {
     public Collider range;
     public float turnSpeed;
+    public Damager damager;
+    public enum projectileType
+    {
+        Hitscan,
+        AOE
+    }
+    public projectileType projectile;
 
     private GameObject target;
     private List<GameObject> inRange = new List<GameObject>();
+
 
     // Start is called before the first frame update
     void Start()
@@ -73,6 +81,17 @@ public class Targetting : MonoBehaviour
 
     protected void Fire()
     {
+        if(target == null)
+        {
+            return;
+        }
+        EnemyHealth health = target.GetComponent<EnemyHealth>();
+        if(projectile == projectileType.Hitscan)
+        {
+            health.takeDamage(damager.damage);
+        }
+        
 
+        
     }
 }
