@@ -7,6 +7,7 @@ public class Spawner : MonoBehaviour
 
     public Transform enemyPrefab;
     public Transform spawnPoint;
+    public Transform destination;
 
     public bool waveActive = false;
     public float timeBetweenWaves = 5f;
@@ -43,7 +44,8 @@ public class Spawner : MonoBehaviour
     void SpawnEnemy()
     {
         numEnemiesSpawned++;
-        Transform curr = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+        Transform curr = Instantiate(enemyPrefab, spawnPoint.position,
+            spawnPoint.rotation);
         curr.gameObject.name = "Enemy" + numEnemiesSpawned;
     }
 }

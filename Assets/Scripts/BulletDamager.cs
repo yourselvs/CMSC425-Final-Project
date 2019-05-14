@@ -27,7 +27,8 @@ public class BulletDamager : MonoBehaviour
         Vector3 fwd = transform.TransformDirection(Vector3.forward);
         RaycastHit hit;
         //if there is a collider .5f ahead of the bullet
-        if (Physics.Raycast(transform.position, fwd, out hit, 2.0f))
+        Debug.DrawRay(transform.position, fwd, Color.red);
+        if (Physics.Raycast(transform.position, fwd, out hit, 3.0f))
         {
             if (hit.collider.CompareTag("Enemy"))
             {
@@ -40,6 +41,7 @@ public class BulletDamager : MonoBehaviour
         } else
         {
             float step = speed * Time.deltaTime;
+            Debug.Log("target is " + target);
             transform.position = Vector3.MoveTowards(transform.position, target.transform.position, step);
         }
     }
