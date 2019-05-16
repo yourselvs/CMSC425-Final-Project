@@ -6,10 +6,10 @@ public class EnemyHealth : MonoBehaviour
 {
     public float health;
 
-    public void takeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         health -= damage;
-        Debug.Log(health);
+        //Debug.Log(health);
     }
 
     // Start is called before the first frame update
@@ -21,6 +21,13 @@ public class EnemyHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (health <= 0)
+            ExplodeAndDestroy();
+    }
+
+    void ExplodeAndDestroy()
+    {
+        // do explosions here
+        Destroy(this.gameObject);
     }
 }

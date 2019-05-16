@@ -66,16 +66,29 @@ public class Targetting : MonoBehaviour
 
     protected void FindFurthestAlong()
     {
+        List<GameObject> toDelete = new List<GameObject>();
         float distance = -1;
-        foreach(GameObject enemy in inRange)
+        foreach (GameObject enemy in inRange)
         {
-            EnemyMovement movement = enemy.GetComponent<EnemyMovement>();
-            float traveled = movement.distanceTraveled;
-            if (distance < movement.distanceTraveled)
+            if (enemy != null)
             {
-                distance = traveled;
-                target = enemy;
+                EnemyMovement movement = enemy.GetComponent<EnemyMovement>();
+                float traveled = movement.distanceTraveled;
+                if (distance < movement.distanceTraveled)
+                {
+                    distance = traveled;
+                    target = enemy;
+                }
             }
+            else
+            {
+                toDelete.Add(enemy);
+            }
+        }
+
+        foreach (GameObject toDel in toDelete)
+        {
+            inRange.Remove(toDel);
         }
     }
 
@@ -96,7 +109,7 @@ public class Targetting : MonoBehaviour
         EnemyHealth health = target.GetComponent<EnemyHealth>();
         if(projectile == projectileType.Hitscan)
         {
-            health.takeDamage(damage * Time.deltaTime);
+            health.TakeDamage(damage * Time.deltaTime);
             attackParticle.transform.position = transform.position;
             attackParticle.transform.LookAt(target.transform.position);
             attackParticle.Play();
