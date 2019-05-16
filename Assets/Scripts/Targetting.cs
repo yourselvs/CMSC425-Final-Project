@@ -119,7 +119,8 @@ public class Targetting : MonoBehaviour
             if(myTime > reloadTime)
             {
                 myTime = 0.0f;
-                shot = Instantiate(bullet, projectilePoint.transform.position, projectilePoint.transform.rotation) as GameObject;
+                shot = Instantiate(bullet, projectilePoint.transform.position,
+                    projectilePoint.transform.rotation) as GameObject;
                 shot.SendMessage("Target", target);
             }
         }
