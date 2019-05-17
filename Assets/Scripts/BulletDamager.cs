@@ -39,6 +39,7 @@ public class BulletDamager : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Enemy"))
                 {
+                    Debug.Log(hit.collider.name);
                     hit.collider.GetComponent<EnemyHealth>().TakeDamage(damage);
                 }
                 if (!hit.collider.CompareTag("Tower"))
