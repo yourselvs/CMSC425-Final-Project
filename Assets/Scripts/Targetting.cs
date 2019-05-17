@@ -94,10 +94,13 @@ public class Targetting : MonoBehaviour
 
     protected void Turn()
     {
-        Vector3 targetDirection = target.transform.position - transform.position;
-        float step = turnSpeed * Time.deltaTime;
-        Vector3 turnTowards = Vector3.RotateTowards(transform.forward, targetDirection, step, 0.0f);
-        transform.rotation = Quaternion.LookRotation(turnTowards);
+        if (target != null)
+        {
+            Vector3 targetDirection = target.transform.position - transform.position;
+            float step = turnSpeed * Time.deltaTime;
+            Vector3 turnTowards = Vector3.RotateTowards(transform.forward, targetDirection, step, 0.0f);
+            transform.rotation = Quaternion.LookRotation(turnTowards);
+        }
     }
 
     protected void Fire()
@@ -122,6 +125,7 @@ public class Targetting : MonoBehaviour
                 shot = Instantiate(bullet, projectilePoint.transform.position,
                     projectilePoint.transform.rotation) as GameObject;
                 shot.SendMessage("Target", target);
+
             }
         }
         

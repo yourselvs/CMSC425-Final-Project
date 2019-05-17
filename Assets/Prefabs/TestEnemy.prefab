@@ -132,6 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goal: {fileID: 0}
   distanceTraveled: 0
+  spawner: {fileID: 0}
 --- !u!54 &8812946955689793184
 Rigidbody:
   m_ObjectHideFlags: 0

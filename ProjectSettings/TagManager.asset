@@ -7,6 +7,9 @@ TagManager:
   - Hookable
   - Enemy
   - Tower
+  - Wall
+  - Ground
+  - Fire
   - Destination
   layers:
   - Default
