@@ -7,6 +7,9 @@ public class EnemyMovement : MonoBehaviour
     NavMeshAgent agent;
     public Transform goal;
     public float distanceTraveled = 0;
+    public GameObject spawner;
+
+    private Transform destination;
 
     // Start is called before the first frame update
     void Start()
@@ -14,7 +17,9 @@ public class EnemyMovement : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         if (agent.enabled == true)
         {
-            agent.destination = goal.position;
+            destination = GameObject.FindWithTag("Destination").transform;
+            Debug.Log(destination);
+            agent.destination = destination.position;
         }
     }
 

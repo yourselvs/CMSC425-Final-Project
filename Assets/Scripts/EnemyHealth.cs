@@ -9,7 +9,7 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(float damage)
     {
         health -= damage;
-        //Debug.Log(health);
+        Debug.Log(health);
     }
 
     // Start is called before the first frame update

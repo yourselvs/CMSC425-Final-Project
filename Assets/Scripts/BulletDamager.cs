@@ -35,10 +35,11 @@ public class BulletDamager : MonoBehaviour
             Vector3 fwd = transform.TransformDirection(Vector3.forward);
             RaycastHit hit;
             //if there is a collider .5f ahead of the bullet
-            if (Physics.Raycast(transform.position, fwd, out hit, 2.0f))
+            if (Physics.Raycast(transform.position, fwd, out hit, 3.0f))
             {
                 if (hit.collider.CompareTag("Enemy"))
                 {
+                    Debug.Log(hit.collider.name);
                     hit.collider.GetComponent<EnemyHealth>().TakeDamage(damage);
                 }
                 if (!hit.collider.CompareTag("Tower"))
