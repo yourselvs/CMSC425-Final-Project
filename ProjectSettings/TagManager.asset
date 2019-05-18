@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Hookable
+  - Enemy
+  - Tower
+  - Wall
+  - Ground
+  - Fire
+  - Destination
   layers:
   - Default
   - TransparentFX
