@@ -62,3 +62,4 @@ crashlytics-build.properties
 
 //ignore .psd files from assets
 *.psd
+*.psd.meta

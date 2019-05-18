@@ -6,9 +6,7 @@ using UnityEngine;
 //Drew from HitscanAttack, Damager, AttackAffector, and ILauncher
 public class Targetting : MonoBehaviour
 {
-    public Collider range;
     public float turnSpeed;
-    public int damage;
     public enum projectileType
     {
         Hitscan,
@@ -46,8 +44,9 @@ public class Targetting : MonoBehaviour
             Fire();
         }
     }
-    protected void OnTriggerExit(Collider other)
+    protected void TriggerLeft(Collider other)
     {
+        Debug.Log("left");
         var enemy = other.gameObject;
         if(enemy.CompareTag("Enemy"))
         {
@@ -55,8 +54,9 @@ public class Targetting : MonoBehaviour
         }
     }
 
-    protected void OnTriggerEnter(Collider other)
+    protected void TriggerEntered(Collider other)
     {
+        Debug.Log("enter");
         var enemy = other.gameObject;
         if (enemy.CompareTag("Enemy"))
         {
@@ -114,14 +114,7 @@ public class Targetting : MonoBehaviour
             return;
         }
         EnemyHealth health = target.GetComponent<EnemyHealth>();
-        if(projectile == projectileType.Hitscan)
-        {
-            health.TakeDamage(damage * Time.deltaTime);
-            attackParticle.transform.position = transform.position;
-            attackParticle.transform.LookAt(target.transform.position);
-            attackParticle.Play();
-            Debug.Log("boom");
-        } else if (projectile == projectileType.Projectile)
+        if (projectile == projectileType.Projectile)
         {
             if(myTime > reloadTime)
             {

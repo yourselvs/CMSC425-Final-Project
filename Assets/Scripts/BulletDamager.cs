@@ -6,7 +6,8 @@ public class BulletDamager : MonoBehaviour
 {
     public float damage;
     public float speed;
-
+    public float turnSpeed;
+    
     private GameObject target;
 
     // Start is called before the first frame update
@@ -29,12 +30,6 @@ public class BulletDamager : MonoBehaviour
             Physics.IgnoreCollision(gameObject.GetComponent<Collider>(),
                 collider.gameObject.GetComponent<Collider>());
         }
-        //else if (collider.CompareTag("Enemy"))
-        //{
-        //    Debug.Log("this collider is " + gameObject.GetComponent<Collider>()
-        //        + "other collider is " + collider.gameObject.GetComponent<Collider>());
-        //    collider.GetComponent<EnemyHealth>().TakeDamage(damage);
-        //}
         if (!collider.CompareTag("Tower") && !collider.CompareTag("Player"))
         {
             Debug.Log("this collider is " + gameObject.GetComponent<Collider>()
@@ -64,10 +59,10 @@ public class BulletDamager : MonoBehaviour
 
             else
             {
+                //move towards target
                 float step = speed * Time.deltaTime;
                 Vector3 targetCenter = target.transform.position + new Vector3(0.0f, 1.25f, 0.0f);
                 transform.position = Vector3.MoveTowards(transform.position, targetCenter, step);
-                //Debug.DrawLine(transform.position, target.transform.position);
             }
         }
     }
