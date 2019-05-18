@@ -66,6 +66,7 @@ public class Targetting : MonoBehaviour
 
     protected void FindFurthestAlong()
     {
+        
         List<GameObject> toDelete = new List<GameObject>();
         float distance = -1;
         foreach (GameObject enemy in inRange)
@@ -90,16 +91,19 @@ public class Targetting : MonoBehaviour
         {
             inRange.Remove(toDel);
         }
+        
     }
 
     protected void Turn()
     {
         if (target != null)
         {
-            Vector3 targetDirection = target.transform.position - transform.position;
+            //adds 1.25 y to account for the drones being 1.25 above their transform
+            Vector3 targetDirection = target.transform.position - transform.position + new Vector3(0.0f, 1.25f, 0.0f);
             float step = turnSpeed * Time.deltaTime;
             Vector3 turnTowards = Vector3.RotateTowards(transform.forward, targetDirection, step, 0.0f);
             transform.rotation = Quaternion.LookRotation(turnTowards);
+            Debug.DrawRay(transform.position, targetDirection);
         }
     }
 

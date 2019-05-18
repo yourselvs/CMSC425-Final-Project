@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 53254497800828154}
   m_Layer: 10
   m_Name: Base_MachineGun_L01
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4817,7 +4817,7 @@ GameObject:
   - component: {fileID: 53254498167361931}
   m_Layer: 10
   m_Name: MachineGunLvl1Effect
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9589,7 +9589,7 @@ GameObject:
   - component: {fileID: 53254498302755409}
   m_Layer: 0
   m_Name: MachineGunTower
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14293,7 +14293,7 @@ GameObject:
   - component: {fileID: 53254498429517950}
   m_Layer: 10
   m_Name: Turret_MachineGun_L01_Shadow
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19003,7 +19003,7 @@ GameObject:
   - component: {fileID: 53254498613265847}
   m_Layer: 10
   m_Name: Turret_MachineGun_L01
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23763,7 +23763,7 @@ GameObject:
   - component: {fileID: 53254499183272777}
   m_Layer: 10
   m_Name: MachineGunTower_0
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33072,7 +33072,7 @@ GameObject:
   - component: {fileID: 53254499352918029}
   m_Layer: 0
   m_Name: Base
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33160,7 +33160,7 @@ GameObject:
   - component: {fileID: 53254499403306129}
   m_Layer: 10
   m_Name: ProjectilePoint
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 571167235653111936, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
