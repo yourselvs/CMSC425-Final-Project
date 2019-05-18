@@ -6,9 +6,7 @@ using UnityEngine;
 //Drew from HitscanAttack, Damager, AttackAffector, and ILauncher
 public class Targetting : MonoBehaviour
 {
-    public Collider range;
     public float turnSpeed;
-    public int damage;
     public enum projectileType
     {
         Hitscan,
@@ -46,8 +44,9 @@ public class Targetting : MonoBehaviour
             Fire();
         }
     }
-    protected void OnTriggerExit(Collider other)
+    protected void TriggerLeft(Collider other)
     {
+        Debug.Log("left");
         var enemy = other.gameObject;
         if(enemy.CompareTag("Enemy"))
         {
@@ -55,8 +54,9 @@ public class Targetting : MonoBehaviour
         }
     }
 
-    protected void OnTriggerEnter(Collider other)
+    protected void TriggerEntered(Collider other)
     {
+        Debug.Log("enter");
         var enemy = other.gameObject;
         if (enemy.CompareTag("Enemy"))
         {
@@ -66,6 +66,7 @@ public class Targetting : MonoBehaviour
 
     protected void FindFurthestAlong()
     {
+        
         List<GameObject> toDelete = new List<GameObject>();
         float distance = -1;
         foreach (GameObject enemy in inRange)
@@ -90,16 +91,19 @@ public class Targetting : MonoBehaviour
         {
             inRange.Remove(toDel);
         }
+        
     }
 
     protected void Turn()
     {
         if (target != null)
         {
-            Vector3 targetDirection = target.transform.position - transform.position;
+            //adds 1.25 y to account for the drones being 1.25 above their transform
+            Vector3 targetDirection = target.transform.position - transform.position + new Vector3(0.0f, 1.25f, 0.0f);
             float step = turnSpeed * Time.deltaTime;
             Vector3 turnTowards = Vector3.RotateTowards(transform.forward, targetDirection, step, 0.0f);
             transform.rotation = Quaternion.LookRotation(turnTowards);
+            Debug.DrawRay(transform.position, targetDirection);
         }
     }
 
@@ -110,14 +114,7 @@ public class Targetting : MonoBehaviour
             return;
         }
         EnemyHealth health = target.GetComponent<EnemyHealth>();
-        if(projectile == projectileType.Hitscan)
-        {
-            health.TakeDamage(damage * Time.deltaTime);
-            attackParticle.transform.position = transform.position;
-            attackParticle.transform.LookAt(target.transform.position);
-            attackParticle.Play();
-            Debug.Log("boom");
-        } else if (projectile == projectileType.Projectile)
+        if (projectile == projectileType.Projectile)
         {
             if(myTime > reloadTime)
             {
