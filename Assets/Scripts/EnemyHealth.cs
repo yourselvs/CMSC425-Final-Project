@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     public float health;
+    public GameObject explosion;
 
     public void TakeDamage(float damage)
     {
@@ -28,6 +29,7 @@ public class EnemyHealth : MonoBehaviour
     void ExplodeAndDestroy()
     {
         // do explosions here
+        Instantiate(explosion, transform.position, transform.rotation);
         Destroy(this.gameObject);
     }
 }
