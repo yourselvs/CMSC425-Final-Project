@@ -162,3 +162,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 40
+  explosion: {fileID: 100004, guid: 2857e183f4cd3df4e9096e5b578bd32f, type: 3}
+  pickup: {fileID: 1000011041813418, guid: 1a5c9c34146ebbc42af280d68f43bd19, type: 3}

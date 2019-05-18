@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 33000012937211698}
   - component: {fileID: 23000011640202488}
   - component: {fileID: 64000012469121188}
+  - component: {fileID: 9206770575252662418}
+  - component: {fileID: 760045577328739974}
   m_Layer: 0
   m_Name: Bolt
   m_TagString: Untagged
@@ -27,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000011041813418}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalScale: {x: 20, y: 20, z: 20}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -92,3 +94,29 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300000, guid: 394abde96a03bb24c9dea260a13f1475, type: 3}
+--- !u!114 &9206770575252662418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000011041813418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a627e9f539cdd7149aeb9c77401c1698, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amplitude: 0.5
+  frequency: 0
+--- !u!122 &760045577328739974
+Halo:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000011041813418}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4278310077
+  m_Size: 0.5

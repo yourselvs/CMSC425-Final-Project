@@ -6,6 +6,7 @@ public class EnemyHealth : MonoBehaviour
 {
     public float health;
     public GameObject explosion;
+    public GameObject pickup;
 
     public void TakeDamage(float damage)
     {
@@ -30,6 +31,7 @@ public class EnemyHealth : MonoBehaviour
     {
         // do explosions here
         Instantiate(explosion, transform.position, transform.rotation);
+        Instantiate(pickup, transform.position, transform.rotation);
         Destroy(this.gameObject);
     }
 }
