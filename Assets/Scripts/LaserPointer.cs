@@ -45,8 +45,10 @@ public class LaserPointer : MonoBehaviour
                 if(node != null)
                 {
                     Renderer nodeRend = node.GetComponent<Renderer>();
+                    Renderer rend = laser.GetComponent<Renderer>();
+                    rend.material.shader = Shader.Find("Unlit/Color");
 
-                    if(nodeHighlighted == null)
+                    if (nodeHighlighted == null)
                     {
                         nodeHighlighted = node;
                         previousColor = nodeRend.material.GetColor("_Color");
@@ -63,20 +65,20 @@ public class LaserPointer : MonoBehaviour
                     if (node.occupied)
                     {
                         nodeRend.material.SetColor("_Color", Color.red);
+                        rend.material.SetColor("_Color", Color.red);
                         shouldSpawn = false;
                     }
                     else
                     {
                         nodeRend.material.SetColor("_Color", Color.green);
+                        rend.material.SetColor("_Color", Color.green);
                         shouldSpawn = true;
                     }
 
                     hitPoint = hit.point;
                     nodeSelected = hit.collider.GetComponent<TowerNode>();
 
-                    Renderer rend = laser.GetComponent<Renderer>();
-                    rend.material.shader = Shader.Find("Unlit/Color");
-                    rend.material.SetColor("_Color", Color.green);
+                    
 
                     ShowLaser(hit.distance);
                 }

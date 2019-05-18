@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Valve.VR;
 
 public class MenuController : MonoBehaviour
@@ -18,7 +19,9 @@ public class MenuController : MonoBehaviour
     public SteamVR_Behaviour_Pose controllerPose;
     public SteamVR_Action_Boolean pauseAction;
     public SteamVR_Action_Boolean thumbpadAction;
+    public SteamVR_Action_Vibration hapticAction;
     public MenuController otherMenu;
+    public MoneyController moneyController;
     public LaserPointer laserPointer;
     public GameObject chooseTowerMenu,
         buildTowerMenu,
@@ -29,6 +32,7 @@ public class MenuController : MonoBehaviour
     public MenuState state;
 
     private float timeScale, fixedDeltaTime;
+    private int towerCost;
     private GameObject selectedTower;
 
     // Start is called before the first frame update
@@ -41,6 +45,8 @@ public class MenuController : MonoBehaviour
 
     void Update()
     {
+        
+
         if (pauseAction.GetStateDown(handType))
         {
             if (state == MenuState.Paused)
@@ -91,7 +97,7 @@ public class MenuController : MonoBehaviour
                 buildTowerMenu.SetActive(false);
                 chooseTowerMenu.SetActive(true);
                 laserPointer.Deactivate();
-                // TODO: refund player currency
+                moneyController.money += towerCost;
                 state = MenuState.Choosing;
                 break;
             case MenuState.Editing:
@@ -108,12 +114,20 @@ public class MenuController : MonoBehaviour
 
     public void SelectTower(GameObject towerPrefab)
     {
-        // TODO: check if tower selection is valid
-        //       i.e. player has enough currency to purchase tower
-        //       and immediately remove currency from player account
-        chooseTowerMenu.SetActive(false);
-        buildTowerMenu.SetActive(true);
-        state = MenuState.Building;
+        int cost = 250; // TODO: get actual cost instead of making one up
+        if (moneyController.money >= cost)
+        {
+            moneyController.money -= cost;
+            towerCost = cost;
+            chooseTowerMenu.SetActive(false);
+            buildTowerMenu.SetActive(true);
+            state = MenuState.Building;
+        }
+        else
+        {
+            hapticAction.Execute(0, .05f, 100, .2f, handType);
+            hapticAction.Execute(.1f, .05f, 100, .2f, handType);
+        }
     }
 
     public void Deactivate()
