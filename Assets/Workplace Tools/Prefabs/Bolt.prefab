@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 23000011640202488}
   - component: {fileID: 64000012469121188}
   - component: {fileID: 9206770575252662418}
-  - component: {fileID: 760045577328739974}
   m_Layer: 0
   m_Name: Bolt
   m_TagString: Untagged
@@ -108,15 +107,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   amplitude: 0.5
   frequency: 0
---- !u!122 &760045577328739974
-Halo:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000011041813418}
-  m_Enabled: 1
-  m_Color:
-    serializedVersion: 2
-    rgba: 4278310077
-  m_Size: 0.5

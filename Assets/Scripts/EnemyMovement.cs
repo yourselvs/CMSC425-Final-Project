@@ -5,7 +5,7 @@ using UnityEngine.AI;
 public class EnemyMovement : MonoBehaviour
 {
     NavMeshAgent agent;
-    public Transform goal;
+    public GameObject goal;
     public float distanceTraveled = 0;
     public GameObject spawner;
 

@@ -17,6 +17,7 @@ public class PickupMovement : MonoBehaviour
     void Start()
     {
         posOffset = transform.position;
+        posOffset.y += 2;
         frequency = (Random.value + 1);
 
     }
