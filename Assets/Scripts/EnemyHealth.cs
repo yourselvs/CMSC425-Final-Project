@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     public float health;
+    public Spawner spawner;
 
     public void TakeDamage(float damage)
     {
@@ -21,7 +22,10 @@ public class EnemyHealth : MonoBehaviour
     void Update()
     {
         if (health <= 0)
+        {
             ExplodeAndDestroy();
+            spawner.RemoveEnemy();
+        }
     }
 
     void ExplodeAndDestroy()

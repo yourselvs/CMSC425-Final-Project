@@ -12,6 +12,7 @@ public class MenuController : MonoBehaviour
         Choosing,
         Building,
         Editing,
+        Spawning,
         Paused
     }
 
@@ -23,10 +24,12 @@ public class MenuController : MonoBehaviour
     public MenuController otherMenu;
     public MoneyController moneyController;
     public LaserPointer laserPointer;
+    public Spawner spawner;
     public GameObject chooseTowerMenu,
         buildTowerMenu,
         editTowerMenu,
-        pauseMenu;
+        pauseMenu,
+        spawningMenu;
 
     [HideInInspector]
     public MenuState state;
@@ -61,25 +64,41 @@ public class MenuController : MonoBehaviour
             }
         }
 
-        if (state == MenuState.Inactive &&
-            thumbpadAction.GetStateDown(handType) &&
-            otherMenu.state != MenuState.Paused)
+        if (state == MenuState.Spawning &&
+            spawner.waveActive)
         {
-            selectedTower = GetSelectedTower();
+            spawningMenu.SetActive(false);
+            state = MenuState.Inactive;
+        }
 
-            if (selectedTower)
+        if (state == MenuState.Inactive)
+        {
+            if (!spawner.waveActive)
             {
-                editTowerMenu.SetActive(true);
-                // TODO: Set the object that's being edited somewhere
-                //       probably highlight the selected tower somehow?
-                state = MenuState.Editing;
+                spawningMenu.SetActive(true);
+                state = MenuState.Spawning;
             }
-            else
+
+            if(thumbpadAction.GetStateDown(handType) &&
+            otherMenu.state != MenuState.Paused)
             {
-                chooseTowerMenu.SetActive(true);
-                state = MenuState.Choosing;
+                selectedTower = GetSelectedTower();
+
+                if (selectedTower)
+                {
+                    editTowerMenu.SetActive(true);
+                    // TODO: Set the object that's being edited somewhere
+                    //       probably highlight the selected tower somehow?
+                    state = MenuState.Editing;
+                }
+                else
+                {
+                    chooseTowerMenu.SetActive(true);
+                    state = MenuState.Choosing;
+                }
             }
         }
+            
 
     }
 
@@ -107,6 +126,16 @@ public class MenuController : MonoBehaviour
                 Unpause();
                 state = MenuState.Inactive;
                 break;
+        }
+    }
+
+    public void Build()
+    {
+        if(state == MenuState.Spawning)
+        {
+            chooseTowerMenu.SetActive(true);
+            spawningMenu.SetActive(false);
+            state = MenuState.Choosing;
         }
     }
 
@@ -149,6 +178,7 @@ public class MenuController : MonoBehaviour
         editTowerMenu.SetActive(false);
         buildTowerMenu.SetActive(false);
         pauseMenu.SetActive(false);
+        spawningMenu.SetActive(false);
         state = MenuState.Inactive;
     }
 
