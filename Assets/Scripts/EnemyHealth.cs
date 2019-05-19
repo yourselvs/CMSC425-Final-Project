@@ -5,13 +5,13 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     public float health;
+    public Spawner spawner;
     public GameObject explosion;
     public GameObject pickup;
 
     public void TakeDamage(float damage)
     {
         health -= damage;
-        Debug.Log(health);
     }
 
     // Start is called before the first frame update
@@ -24,7 +24,10 @@ public class EnemyHealth : MonoBehaviour
     void Update()
     {
         if (health <= 0)
+        {
             ExplodeAndDestroy();
+            spawner.RemoveEnemy();
+        }
     }
 
     void ExplodeAndDestroy()

@@ -98,7 +98,7 @@ public class RMF_RadialMenu : MonoBehaviour {
 
 
         if (useGamepad) {
-            EventSystem.current.SetSelectedGameObject(gameObject, null); //We'll make this the active object when we start it. Comment this line to set it manually from another script.
+            //EventSystem.current.SetSelectedGameObject(gameObject, null); //We'll make this the active object when we start it. Comment this line to set it manually from another script.
             if (useSelectionFollower && selectionFollowerContainer != null)
                 selectionFollowerContainer.rotation = Quaternion.Euler(0, 0, -globalOffset); //Point the selection follower at the first element.
         }
@@ -113,8 +113,6 @@ public class RMF_RadialMenu : MonoBehaviour {
         Vector2 location = locationAction.GetAxis(handType);
         bool touching = touchAction.GetState(handType);
         bool pressing = pressAction.GetStateDown(handType);
-
-        Debug.Log(touching);
 
         bool joystickMoved = touching && (location.x != 0.0 || location.y != 0.0);
         //==============================================================================================

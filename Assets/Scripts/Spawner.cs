@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-
-    public Transform enemyPrefab;
-    public Transform enemyScout;
-    public Transform enemyInvader;
-    public Transform enemyCollector;
-    public Transform enemyGuard;
+    public GameObject enemyPrefab;
+    public GameObject enemyScout;
+    public GameObject enemyInvader;
+    public GameObject enemyCollector;
+    public GameObject enemyGuard;
     public Transform spawnPoint;
     public Transform destination;
 
     public bool isTesting = true;
     public bool waveActive = false;
+    public bool spawning = false;
+    public int numEnemiesAlive;
     public float timeBetweenWaves = 5f;
-    private float countdown = 2f;
     private int numEnemiesSpawned = 0;
 
 
@@ -25,18 +25,14 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (countdown <= 0f && waveActive)
-        {
-            StartCoroutine(SpawnWave());
-            countdown = timeBetweenWaves;
-        }
 
-        countdown -= Time.deltaTime;
     }
 
-    void StartWave()
+    public void StartWave()
     {
+        StartCoroutine(SpawnWave());
         waveActive = true;
+        spawning = true;
     }
 
     IEnumerator SpawnWave()
@@ -52,6 +48,7 @@ public class Spawner : MonoBehaviour
         }
         else
         {
+            Debug.Log("Spawning wave " + waveNumber);
             switch (waveNumber)
             {
                 case 0:
@@ -121,50 +118,81 @@ public class Spawner : MonoBehaviour
             }
         }
         waveNumber++;
-        waveActive = false;
+        spawning = false;
+    }
+
+    public void RemoveEnemy()
+    {
+        numEnemiesAlive--;
+
+        if(!spawning && numEnemiesAlive <= 0)
+        {
+            waveActive = false;
+        }
     }
 
     void SpawnEnemy()
     {
         numEnemiesSpawned++;
-        Transform curr = Instantiate(enemyPrefab, spawnPoint.position,
+        numEnemiesAlive++;
+        GameObject curr = Instantiate(enemyPrefab, spawnPoint.position,
             spawnPoint.rotation);
         curr.gameObject.name = "Enemy" + numEnemiesSpawned;
+
+        EnemyHealth health = curr.GetComponent<EnemyHealth>();
+        health.spawner = this;
     }
 
     void SpawnScout()
     {
+        Debug.Log("Spawning scout");
         numEnemiesSpawned++;
-        Transform curr = Instantiate(enemyScout, spawnPoint.position,
+        numEnemiesAlive++;
+        GameObject curr = Instantiate(enemyScout, spawnPoint.position,
             spawnPoint.rotation);
         curr.gameObject.name = "Enemy" + numEnemiesSpawned;
+
+        EnemyHealth health = curr.GetComponent<EnemyHealth>();
+        health.spawner = this;
     }
 
     void SpawnGuard()
     {
+        Debug.Log("Spawning guard");
         numEnemiesSpawned++;
-        Transform curr = Instantiate(enemyGuard, spawnPoint.position,
+        numEnemiesAlive++;
+        GameObject curr = Instantiate(enemyGuard, spawnPoint.position,
             spawnPoint.rotation);
         curr.gameObject.name = "Enemy" + numEnemiesSpawned;
 
+        EnemyHealth health = curr.GetComponent<EnemyHealth>();
+        health.spawner = this;
     }
 
     void SpawnCollector()
     {
+        Debug.Log("Spawning collector");
         numEnemiesSpawned++;
-        Transform curr = Instantiate(enemyCollector, spawnPoint.position,
+        numEnemiesAlive++;
+        GameObject curr = Instantiate(enemyCollector, spawnPoint.position,
             spawnPoint.rotation);
         curr.gameObject.name = "Enemy" + numEnemiesSpawned;
 
+        EnemyHealth health = curr.GetComponent<EnemyHealth>();
+        health.spawner = this;
     }
 
     void SpawnInvader()
     {
+        Debug.Log("Spawning invader");
         numEnemiesSpawned++;
-        Transform curr = Instantiate(enemyInvader, spawnPoint.position,
+        numEnemiesAlive++;
+        GameObject curr = Instantiate(enemyInvader, spawnPoint.position,
             spawnPoint.rotation);
         curr.gameObject.name = "Enemy" + numEnemiesSpawned;
 
+        EnemyHealth health = curr.GetComponent<EnemyHealth>();
+        health.spawner = this;
     }
 
 }
