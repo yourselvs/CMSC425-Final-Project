@@ -45,8 +45,6 @@ public class MenuController : MonoBehaviour
 
     void Update()
     {
-        
-
         if (pauseAction.GetStateDown(handType))
         {
             if (state == MenuState.Paused)
@@ -114,19 +112,27 @@ public class MenuController : MonoBehaviour
 
     public void SelectTower(GameObject towerPrefab)
     {
-        int cost = 250; // TODO: get actual cost instead of making one up
+        TowerCost tower = towerPrefab.GetComponent<TowerCost>();
+        int cost = 0;
+
+        if(tower != null)
+        {
+            Debug.Log("Tower cost is " + tower.price);
+            cost = tower.price;
+        }
+        else
+        {
+            Debug.Log("Tower cost not found.");
+        }
+        
         if (moneyController.money >= cost)
         {
             moneyController.money -= cost;
             towerCost = cost;
+            laserPointer.LoadSpawn(towerPrefab);
             chooseTowerMenu.SetActive(false);
             buildTowerMenu.SetActive(true);
             state = MenuState.Building;
-        }
-        else
-        {
-            hapticAction.Execute(0, .05f, 100, .2f, handType);
-            hapticAction.Execute(.1f, .05f, 100, .2f, handType);
         }
     }
 

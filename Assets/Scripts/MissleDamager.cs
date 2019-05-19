@@ -71,7 +71,6 @@ public class MissleDamager : MonoBehaviour
                 foreach (Collider obj in hits)
                 {
                     if (obj.gameObject.CompareTag("Enemy")) {
-                        Debug.Log(obj);
                         obj.GetComponent<EnemyHealth>().TakeDamage(damage);                      
                     }
                     DestroyMissle();

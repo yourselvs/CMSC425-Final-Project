@@ -65,7 +65,10 @@ public class PauseMenuController : MonoBehaviour
 
     public void DeactivateMenus()
     {
-        pauseMenu.SetActive(false);
+        if (pauseMenu != null)
+        { 
+            pauseMenu.SetActive(false);
+        }
         state = PausedMenuState.Inactive;
     }
 

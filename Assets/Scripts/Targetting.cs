@@ -46,7 +46,6 @@ public class Targetting : MonoBehaviour
     }
     protected void TriggerLeft(Collider other)
     {
-        Debug.Log("left");
         var enemy = other.gameObject;
         if(enemy.CompareTag("Enemy"))
         {
@@ -56,7 +55,6 @@ public class Targetting : MonoBehaviour
 
     protected void TriggerEntered(Collider other)
     {
-        Debug.Log("enter");
         var enemy = other.gameObject;
         if (enemy.CompareTag("Enemy"))
         {

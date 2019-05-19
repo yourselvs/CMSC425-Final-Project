@@ -17,7 +17,7 @@ public class LaserPointer : MonoBehaviour
     public LayerMask teleportMask;
     public int maxHitDistance;
 
-    private bool shouldShow, shouldSpawn, readyToPress;
+    private bool shouldShow, shouldSpawn;
     private GameObject laser;
     private Transform laserTransform;
     private Vector3 hitPoint;
@@ -134,7 +134,6 @@ public class LaserPointer : MonoBehaviour
     {
         this.spawnPrefab = spawnPrefab;
         shouldShow = true;
-        readyToPress = false;
     }
 
     private void ShowLaser(float distance)

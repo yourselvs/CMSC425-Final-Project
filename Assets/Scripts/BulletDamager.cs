@@ -32,8 +32,6 @@ public class BulletDamager : MonoBehaviour
         }
         if (!collider.CompareTag("Tower") && !collider.CompareTag("Player"))
         {
-            Debug.Log("this collider is " + gameObject.GetComponent<Collider>()
-                + "other collider is " + collider.gameObject.GetComponent<Collider>());
            Destroy(gameObject);
         }
     }

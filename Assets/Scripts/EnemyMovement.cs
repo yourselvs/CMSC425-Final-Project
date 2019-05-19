@@ -18,7 +18,6 @@ public class EnemyMovement : MonoBehaviour
         if (agent.enabled == true)
         {
             destination = GameObject.FindWithTag("Destination").transform;
-            Debug.Log(destination);
             agent.destination = destination.position;
         }
     }
