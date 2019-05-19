@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PickupMovement : MonoBehaviour
 {
-    public float amplitude = 0.5f;
+    public float amplitude = 0.2f;
     public float frequency;
 
 
@@ -17,7 +17,7 @@ public class PickupMovement : MonoBehaviour
     void Start()
     {
         posOffset = transform.position;
-        posOffset.y += 2;
+        posOffset.y += 1;
         frequency = (Random.value + 1);
 
     }
@@ -30,7 +30,7 @@ public class PickupMovement : MonoBehaviour
         // rather than per frame.
         transform.Rotate(new Vector3(15, 30, 45) * Time.deltaTime);
         tempPos = posOffset;
-        tempPos.y += Mathf.Sin(Time.fixedTime * Mathf.PI * frequency) * amplitude;
+        tempPos.y += Mathf.Sin(Time.fixedTime * frequency) * amplitude;
 
         transform.position = tempPos;
 
