@@ -146,12 +146,11 @@ public class MenuController : MonoBehaviour
 
         if(tower != null)
         {
-            Debug.Log("Tower cost is " + tower.price);
             cost = tower.price;
         }
         else
         {
-            Debug.Log("Tower cost not found.");
+            Debug.Log("ERROR: Tower cost not found.");
         }
         
         if (moneyController.money >= cost)

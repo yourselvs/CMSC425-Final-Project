@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-
-    public Transform enemyPrefab;
-    public Transform enemyScout;
-    public Transform enemyInvader;
-    public Transform enemyCollector;
-    public Transform enemyGuard;
+    public GameObject enemyPrefab;
+    public GameObject enemyScout;
+    public GameObject enemyInvader;
+    public GameObject enemyCollector;
+    public GameObject enemyGuard;
     public Transform spawnPoint;
     public Transform destination;
 
@@ -18,7 +17,6 @@ public class Spawner : MonoBehaviour
     public bool spawning = false;
     public int numEnemiesAlive;
     public float timeBetweenWaves = 5f;
-    private float countdown = 2f;
     private int numEnemiesSpawned = 0;
 
 
@@ -50,6 +48,7 @@ public class Spawner : MonoBehaviour
         }
         else
         {
+            Debug.Log("Spawning wave " + waveNumber);
             switch (waveNumber)
             {
                 case 0:
@@ -136,7 +135,7 @@ public class Spawner : MonoBehaviour
     {
         numEnemiesSpawned++;
         numEnemiesAlive++;
-        Transform curr = Instantiate(enemyPrefab, spawnPoint.position,
+        GameObject curr = Instantiate(enemyPrefab, spawnPoint.position,
             spawnPoint.rotation);
         curr.gameObject.name = "Enemy" + numEnemiesSpawned;
 
@@ -146,9 +145,10 @@ public class Spawner : MonoBehaviour
 
     void SpawnScout()
     {
+        Debug.Log("Spawning scout");
         numEnemiesSpawned++;
         numEnemiesAlive++;
-        Transform curr = Instantiate(enemyScout, spawnPoint.position,
+        GameObject curr = Instantiate(enemyScout, spawnPoint.position,
             spawnPoint.rotation);
         curr.gameObject.name = "Enemy" + numEnemiesSpawned;
 
@@ -158,9 +158,10 @@ public class Spawner : MonoBehaviour
 
     void SpawnGuard()
     {
+        Debug.Log("Spawning guard");
         numEnemiesSpawned++;
         numEnemiesAlive++;
-        Transform curr = Instantiate(enemyGuard, spawnPoint.position,
+        GameObject curr = Instantiate(enemyGuard, spawnPoint.position,
             spawnPoint.rotation);
         curr.gameObject.name = "Enemy" + numEnemiesSpawned;
 
@@ -170,9 +171,10 @@ public class Spawner : MonoBehaviour
 
     void SpawnCollector()
     {
+        Debug.Log("Spawning collector");
         numEnemiesSpawned++;
         numEnemiesAlive++;
-        Transform curr = Instantiate(enemyCollector, spawnPoint.position,
+        GameObject curr = Instantiate(enemyCollector, spawnPoint.position,
             spawnPoint.rotation);
         curr.gameObject.name = "Enemy" + numEnemiesSpawned;
 
@@ -182,9 +184,10 @@ public class Spawner : MonoBehaviour
 
     void SpawnInvader()
     {
+        Debug.Log("Spawning invader");
         numEnemiesSpawned++;
         numEnemiesAlive++;
-        Transform curr = Instantiate(enemyInvader, spawnPoint.position,
+        GameObject curr = Instantiate(enemyInvader, spawnPoint.position,
             spawnPoint.rotation);
         curr.gameObject.name = "Enemy" + numEnemiesSpawned;
 
