@@ -29,6 +29,7 @@ public class EnemyMovement : MonoBehaviour
         distanceTraveled += Time.deltaTime * agent.velocity.magnitude;
         if (agent.remainingDistance <= 0.2f)
         {
+            //Here we can add the logic for what happens when the player 'leaks' enemies
             Destroy(this.gameObject);
         }
     }
