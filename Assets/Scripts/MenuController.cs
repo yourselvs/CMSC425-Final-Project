@@ -65,17 +65,18 @@ public class MenuController : MonoBehaviour
         }
 
         if (state == MenuState.Spawning &&
+            spawner != null &&
             spawner.waveActive)
         {
-            spawningMenu.SetActive(false);
+            spawningMenu?.SetActive(false);
             state = MenuState.Inactive;
         }
 
         if (state == MenuState.Inactive)
         {
-            if (!spawner.waveActive)
+            if (spawner != null && !spawner.waveActive)
             {
-                spawningMenu.SetActive(true);
+                spawningMenu?.SetActive(true);
                 state = MenuState.Spawning;
             }
 
@@ -134,7 +135,7 @@ public class MenuController : MonoBehaviour
         if(state == MenuState.Spawning)
         {
             chooseTowerMenu.SetActive(true);
-            spawningMenu.SetActive(false);
+            spawningMenu?.SetActive(false);
             state = MenuState.Choosing;
         }
     }
@@ -177,7 +178,10 @@ public class MenuController : MonoBehaviour
         editTowerMenu.SetActive(false);
         buildTowerMenu.SetActive(false);
         pauseMenu.SetActive(false);
-        spawningMenu.SetActive(false);
+        if (spawningMenu != null)
+        {
+            spawningMenu?.SetActive(false);
+        }
         state = MenuState.Inactive;
     }
 
