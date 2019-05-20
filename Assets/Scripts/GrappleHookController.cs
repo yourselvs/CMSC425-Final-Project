@@ -16,7 +16,8 @@ public class GrappleHookController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy") ||
+            other.gameObject.CompareTag("Player"))
         {
             Physics.IgnoreCollision(gameObject.GetComponent<Collider>(),
                 collider.gameObject.GetComponent<Collider>());
