@@ -52,67 +52,143 @@ public class Spawner : MonoBehaviour
             switch (waveNumber)
             {
                 case 0:
-                    for (int i = 0; i < 3; i++)
+                    for (int i = 0; i < 4; i++)
                     {
                         SpawnScout();
                         yield return new WaitForSeconds(0.75f);
                     }
                     break;
                 case 1:
-                    for (int i = 0; i < 4; i++)
+                    for (int i = 0; i < 8; i++)
                     {
-                        if (i < 3)
-                            SpawnScout();
-                        else
-                            SpawnGuard();
-                        yield return new WaitForSeconds(1f);
+                        SpawnScout();
+                        yield return new WaitForSeconds(0.75f);
                     }
                     break;
                 case 2:
-                    for (int i = 0; i < 5; i++)
+                    for (int i = 0; i < 8; i++)
                     {
-                        SpawnScout();
+                        if (i < 6)
+                            SpawnScout();
+                        else
+                            SpawnGuard();
                         yield return new WaitForSeconds(0.5f);
                     }
                     break;
                 case 3:
-                    for (int i = 0; i < 5; i++)
+                    for (int i = 0; i < 8; i++)
                     {
-                        if (i < 3)
-                            SpawnInvader();
+                        if (i < 4)
+                            SpawnScout();
                         else
                             SpawnGuard();
                         yield return new WaitForSeconds(0.75f);
                     }
                     break;
                 case 4:
-                    for (int i = 0; i < 9; i++)
+                    for (int i = 0; i < 5; i++)
                     {
-                        if (i < 3)
-                            SpawnScout();
-                        else if (i < 5)
-                            SpawnGuard();
-                        else if (i < 7)
-                            SpawnInvader();
-                        else
-                            SpawnCollector();
+                        SpawnInvader();
                         yield return new WaitForSeconds(0.9f);
                     }
                     break;
-                //case 5:
-                //    for (int i = 0; i < 9; i++)
-                //    {
-                //        if (i < 3)
-                //            SpawnScout();
-                //        else if (i < 5)
-                //            SpawnGuard();
-                //        else if (i < 6)
-                //            SpawnInvader();
-                //        else
-                //            SpawnCollector();
-                //        yield return new WaitForSeconds(0.5f);
-                //    }
-                //    break;
+                case 5:
+                    for (int i = 0; i < 10; i++)
+                    {
+                        if (i < 4)
+                            SpawnScout();
+                        else if (i < 8)
+                            SpawnGuard();
+                        else
+                            SpawnInvader();
+                        yield return new WaitForSeconds(0.5f);
+                    }
+                    break;
+                case 6:
+                    for (int i = 0; i < 6; i++)
+                    {
+                        SpawnInvader();
+                        yield return new WaitForSeconds(0.5f);
+                    }
+                    break;
+                case 7:
+                    for (int i = 0; i < 25; i++)
+                    {
+                        SpawnScout();
+                        yield return new WaitForSeconds(0.5f);
+                    }
+                    break;
+                case 8:
+                    for (int i = 0; i < 16; i++)
+                    {
+                        if (i < 10)
+                            SpawnGuard();
+                        else if (i < 14)
+                            SpawnInvader();
+                        else
+                            SpawnCollector();
+                        yield return new WaitForSeconds(0.5f);
+                    }
+                    break;
+                case 9:
+                    for (int i = 0; i < 30; i++)
+                    {
+                        if (i < 15)
+                            SpawnScout();
+                        else if (i < 20)
+                            SpawnGuard();
+                        else if (i < 25)
+                            SpawnInvader();
+                        else
+                            SpawnCollector();
+                        yield return new WaitForSeconds(0.5f);
+                    }
+                    break;
+                case 10:
+                    for (int i = 0; i < 10; i++)
+                    {
+                        SpawnCollector();
+                        yield return new WaitForSeconds(0.5f);
+                    }
+                    break;
+                case 11:
+                    for (int i = 0; i < 20; i++)
+                    {
+                        SpawnGuard();
+                        yield return new WaitForSeconds(0.5f);
+                    }
+                    break;
+                case 12:
+                    for (int i = 0; i < 40; i++)
+                    {
+                        SpawnScout();
+                        yield return new WaitForSeconds(0.5f);
+                    }
+                    break;
+                case 13:
+                    for (int i = 0; i < 20; i++)
+                    {
+                        if (i < 10)
+                            SpawnInvader();
+                        else
+                            SpawnCollector();
+                        yield return new WaitForSeconds(0.5f);
+                    }
+                    break;
+                case 14:
+                    for (int i = 0; i < 55; i++)
+                    {
+                        if (i < 20)
+                            SpawnScout();
+                        else if (i < 35)
+                            SpawnGuard();
+                        else if (i < 45)
+                            SpawnInvader();
+                        else
+                            SpawnCollector();
+                        yield return new WaitForSeconds(0.5f);
+                    }
+                    break;
                 default:
                     break;
             }
@@ -125,7 +201,7 @@ public class Spawner : MonoBehaviour
     {
         numEnemiesAlive--;
 
-        if(!spawning && numEnemiesAlive <= 0)
+        if (!spawning && numEnemiesAlive <= 0)
         {
             waveActive = false;
         }

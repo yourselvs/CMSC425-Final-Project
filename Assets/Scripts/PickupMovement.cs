@@ -6,6 +6,7 @@ public class PickupMovement : MonoBehaviour
 {
     public float amplitude = 0.2f;
     public float frequency;
+    public GameObject player;
 
 
     /*
@@ -17,7 +18,9 @@ public class PickupMovement : MonoBehaviour
     void Start()
     {
         posOffset = transform.position;
-        posOffset.y += 1;
+        posOffset.y += (Random.value + 1);
+        posOffset.x += (Random.value * .5f);
+        posOffset.z += (Random.value * .5f);
         frequency = (Random.value + 1);
 
     }
@@ -34,5 +37,15 @@ public class PickupMovement : MonoBehaviour
 
         transform.position = tempPos;
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            // TODO: Give the player money
+            other.GetComponent<MoneyController>().money += 5;
+            Destroy(this.gameObject);
+        }
     }
 }
