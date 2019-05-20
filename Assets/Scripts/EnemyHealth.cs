@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     public float health;
+    public float loot;
     public Spawner spawner;
     public GameObject explosion;
     public GameObject pickup;
@@ -17,7 +18,7 @@ public class EnemyHealth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -34,7 +35,10 @@ public class EnemyHealth : MonoBehaviour
     {
         // do explosions here
         Instantiate(explosion, transform.position, transform.rotation);
-        Instantiate(pickup, transform.position, transform.rotation);
+        for (int i = 0; i < loot; i++)
+        {
+            Instantiate(pickup, transform.position, transform.rotation);
+        }
         Destroy(this.gameObject);
     }
 }
