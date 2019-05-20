@@ -7,7 +7,7 @@ public class EnemyMovement : MonoBehaviour
     NavMeshAgent agent;
     public GameObject goal;
     public float distanceTraveled = 0;
-    public GameObject spawner;
+    public Spawner spawner;
     public GameObject player;
     private Transform destination;
 
@@ -31,6 +31,7 @@ public class EnemyMovement : MonoBehaviour
         {
             //Here we can add the logic for what happens when the player 'leaks' enemies
             player.GetComponent<MoneyController>().Invoke("EnemyEscaped", 0);
+            spawner.numEnemiesAlive--;
             Destroy(this.gameObject);
         }
     }
