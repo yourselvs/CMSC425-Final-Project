@@ -8,7 +8,7 @@ public class EnemyMovement : MonoBehaviour
     public GameObject goal;
     public float distanceTraveled = 0;
     public GameObject spawner;
-
+    public GameObject player;
     private Transform destination;
 
     // Start is called before the first frame update
@@ -20,6 +20,7 @@ public class EnemyMovement : MonoBehaviour
             destination = GameObject.FindWithTag("Destination").transform;
             agent.destination = destination.position;
         }
+        player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame
@@ -29,6 +30,7 @@ public class EnemyMovement : MonoBehaviour
         if (agent.remainingDistance <= 0.2f)
         {
             //Here we can add the logic for what happens when the player 'leaks' enemies
+            player.GetComponent<MoneyController>().Invoke("EnemyEscaped", 0);
             Destroy(this.gameObject);
         }
     }
