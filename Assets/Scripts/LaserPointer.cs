@@ -16,8 +16,9 @@ public class LaserPointer : MonoBehaviour
     public Vector3 teleportReticleOffset;
     public LayerMask teleportMask;
     public int maxHitDistance;
+    public bool shouldSpawn;
 
-    private bool shouldShow, shouldSpawn;
+    private bool shouldShow;
     private GameObject laser;
     private Transform laserTransform;
     private Vector3 hitPoint;

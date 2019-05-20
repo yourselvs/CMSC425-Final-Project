@@ -7,6 +7,7 @@ public class MissleDamager : MonoBehaviour
     public float damage;
     public float speed;
     public float turnSpeed;
+    public float radius;
     public GameObject explosion;
 
     private GameObject target;
@@ -33,7 +34,7 @@ public class MissleDamager : MonoBehaviour
         }
         if (!collider.CompareTag("Tower") && !collider.CompareTag("Player"))
         {
-            Collider[] hits = Physics.OverlapSphere(transform.position, 3);
+            Collider[] hits = Physics.OverlapSphere(transform.position, radius);
             foreach (Collider obj in hits)
             {
                 if (obj.gameObject.CompareTag("Enemy"))

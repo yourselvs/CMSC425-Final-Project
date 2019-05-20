@@ -16,14 +16,15 @@ public class GrappleHookController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Enemy") ||
-            other.gameObject.CompareTag("Player"))
+        if (other.CompareTag("Enemy") ||
+            other.CompareTag("Player") ||
+            other.CompareTag("Tower"))
         {
-            Physics.IgnoreCollision(gameObject.GetComponent<Collider>(),
-                collider.gameObject.GetComponent<Collider>());
+            Physics.IgnoreCollision(other.gameObject.GetComponent<Collider>(),
+                GetComponent<Collider>());
         }
         else if (other.gameObject.CompareTag("Hookable") ||
-            other.gameObject.CompareTag("Tower"))
+            other.gameObject.CompareTag("Base"))
         {
             rb.velocity = Vector3.zero;
             rb.isKinematic = true;

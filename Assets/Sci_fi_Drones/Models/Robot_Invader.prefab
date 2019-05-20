@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 4672920180048082}
   - component: {fileID: 33789404550105692}
   - component: {fileID: 23849067243746582}
-  - component: {fileID: 64915627089224202}
+  - component: {fileID: 7297365248354325642}
   - component: {fileID: 7431225805372049228}
+  - component: {fileID: 7878531671882085401}
   - component: {fileID: 7685044823817137564}
   - component: {fileID: 3848161656796025379}
-  - component: {fileID: 7878531671882085401}
   m_Layer: 0
   m_Name: Robot_Invader
   m_TagString: Enemy
@@ -82,20 +82,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &64915627089224202
-MeshCollider:
+--- !u!65 &7297365248354325642
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1604032164853190}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 4300000, guid: d325e2478367e0447a82a4ede08a8b35, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.522933, y: 1.1976739, z: 0.72342205}
+  m_Center: {x: -0.00016149879, y: 1.0497739, z: 0.021080002}
 --- !u!54 &7431225805372049228
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -112,6 +111,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7878531671882085401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604032164853190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62e021e0ef804024e99bfd732ed73f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 350
+  loot: 3
+  spawner: {fileID: 0}
+  explosion: {fileID: 100012, guid: 384371afbb4354cc9a3fc68eab303756, type: 3}
+  pickup: {fileID: 1000011041813418, guid: 1a5c9c34146ebbc42af280d68f43bd19, type: 3}
 --- !u!114 &7685044823817137564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,18 +165,3 @@ NavMeshAgent:
   m_BaseOffset: -0.2
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &7878531671882085401
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1604032164853190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62e021e0ef804024e99bfd732ed73f60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 125
-  explosion: {fileID: 100012, guid: 384371afbb4354cc9a3fc68eab303756, type: 3}
-  pickup: {fileID: 1000011041813418, guid: 1a5c9c34146ebbc42af280d68f43bd19, type: 3}

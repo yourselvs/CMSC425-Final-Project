@@ -165,6 +165,15 @@ public class MenuController : MonoBehaviour
         }
     }
 
+    public void PlaceTower()
+    {
+        if(laserPointer.shouldSpawn)
+        {
+            DeactivateMenus();
+            laserPointer.Spawn();
+        }
+    }
+
     public void Deactivate()
     {
         laserPointer.Deactivate();

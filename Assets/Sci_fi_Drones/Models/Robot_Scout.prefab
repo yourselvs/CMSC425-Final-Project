@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 4248125747219890}
   - component: {fileID: 33354542504423830}
   - component: {fileID: 23784388623354044}
-  - component: {fileID: 64148567565064136}
-  - component: {fileID: 6127230190450691062}
-  - component: {fileID: 7538474265666546891}
+  - component: {fileID: 4968799379544581412}
   - component: {fileID: 818765273966827338}
+  - component: {fileID: 7538474265666546891}
+  - component: {fileID: 6127230190450691062}
   - component: {fileID: 3231005583791993348}
   m_Layer: 0
   m_Name: Robot_Scout
@@ -82,20 +82,51 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &64148567565064136
-MeshCollider:
+--- !u!135 &4968799379544581412
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1914547237781472}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 4300000, guid: c253b4e8b24a3e441b8388fa411c9b83, type: 3}
+  serializedVersion: 2
+  m_Radius: 0.45
+  m_Center: {x: 0, y: 1.24, z: 0.03}
+--- !u!114 &818765273966827338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1914547237781472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62e021e0ef804024e99bfd732ed73f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 20
+  loot: 1
+  spawner: {fileID: 0}
+  explosion: {fileID: 100004, guid: 2857e183f4cd3df4e9096e5b578bd32f, type: 3}
+  pickup: {fileID: 1000011041813418, guid: 1a5c9c34146ebbc42af280d68f43bd19, type: 3}
+--- !u!114 &7538474265666546891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1914547237781472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceeb0fcc68996d74280f547d7759b9bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goal: {fileID: 0}
+  distanceTraveled: 0
+  spawner: {fileID: 0}
 --- !u!195 &6127230190450691062
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -118,36 +149,6 @@ NavMeshAgent:
   m_BaseOffset: -0.4
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &7538474265666546891
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1914547237781472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceeb0fcc68996d74280f547d7759b9bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  goal: {fileID: 0}
-  distanceTraveled: 0
-  spawner: {fileID: 0}
---- !u!114 &818765273966827338
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1914547237781472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62e021e0ef804024e99bfd732ed73f60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 20
-  explosion: {fileID: 100004, guid: 2857e183f4cd3df4e9096e5b578bd32f, type: 3}
-  pickup: {fileID: 1000011041813418, guid: 1a5c9c34146ebbc42af280d68f43bd19, type: 3}
 --- !u!54 &3231005583791993348
 Rigidbody:
   m_ObjectHideFlags: 0

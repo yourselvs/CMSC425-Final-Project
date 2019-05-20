@@ -48,7 +48,6 @@ public class Spawner : MonoBehaviour
         }
         else
         {
-            Debug.Log("Spawning wave " + waveNumber);
             switch (waveNumber)
             {
                 case 0:
@@ -76,7 +75,7 @@ public class Spawner : MonoBehaviour
                     }
                     break;
                 case 3:
-                    for (int i = 0; i < 8; i++)
+                    for (int i = 0; i < 10; i++)
                     {
                         if (i < 4)
                             SpawnScout();
@@ -86,18 +85,18 @@ public class Spawner : MonoBehaviour
                     }
                     break;
                 case 4:
-                    for (int i = 0; i < 5; i++)
+                    for (int i = 0; i < 6; i++)
                     {
                         SpawnInvader();
                         yield return new WaitForSeconds(0.9f);
                     }
                     break;
                 case 5:
-                    for (int i = 0; i < 10; i++)
+                    for (int i = 0; i < 16; i++)
                     {
                         if (i < 4)
                             SpawnScout();
-                        else if (i < 8)
+                        else if (i < 12)
                             SpawnGuard();
                         else
                             SpawnInvader();
@@ -105,25 +104,25 @@ public class Spawner : MonoBehaviour
                     }
                     break;
                 case 6:
-                    for (int i = 0; i < 6; i++)
+                    for (int i = 0; i < 10; i++)
                     {
                         SpawnInvader();
                         yield return new WaitForSeconds(0.5f);
                     }
                     break;
                 case 7:
-                    for (int i = 0; i < 25; i++)
+                    for (int i = 0; i < 30; i++)
                     {
                         SpawnScout();
                         yield return new WaitForSeconds(0.5f);
                     }
                     break;
                 case 8:
-                    for (int i = 0; i < 16; i++)
+                    for (int i = 0; i < 25; i++)
                     {
                         if (i < 10)
                             SpawnGuard();
-                        else if (i < 14)
+                        else if (i < 20)
                             SpawnInvader();
                         else
                             SpawnCollector();
@@ -131,13 +130,13 @@ public class Spawner : MonoBehaviour
                     }
                     break;
                 case 9:
-                    for (int i = 0; i < 30; i++)
+                    for (int i = 0; i < 35; i++)
                     {
                         if (i < 15)
                             SpawnScout();
-                        else if (i < 20)
-                            SpawnGuard();
                         else if (i < 25)
+                            SpawnGuard();
+                        else if (i < 30)
                             SpawnInvader();
                         else
                             SpawnCollector();
@@ -145,48 +144,48 @@ public class Spawner : MonoBehaviour
                     }
                     break;
                 case 10:
-                    for (int i = 0; i < 10; i++)
+                    for (int i = 0; i < 15; i++)
                     {
                         SpawnCollector();
                         yield return new WaitForSeconds(0.5f);
                     }
                     break;
                 case 11:
-                    for (int i = 0; i < 20; i++)
+                    for (int i = 0; i < 40; i++)
                     {
                         SpawnGuard();
                         yield return new WaitForSeconds(0.5f);
                     }
                     break;
                 case 12:
-                    for (int i = 0; i < 40; i++)
+                    for (int i = 0; i < 70; i++)
                     {
                         SpawnScout();
-                        yield return new WaitForSeconds(0.5f);
+                        yield return new WaitForSeconds(0.3f);
                     }
                     break;
                 case 13:
-                    for (int i = 0; i < 20; i++)
+                    for (int i = 0; i < 30; i++)
                     {
-                        if (i < 10)
+                        if (i < 15)
                             SpawnInvader();
                         else
                             SpawnCollector();
-                        yield return new WaitForSeconds(0.5f);
+                        yield return new WaitForSeconds(0.4f);
                     }
                     break;
                 case 14:
-                    for (int i = 0; i < 55; i++)
+                    for (int i = 0; i < 100; i++)
                     {
-                        if (i < 20)
+                        if (i < 25)
                             SpawnScout();
-                        else if (i < 35)
+                        else if (i < 50)
                             SpawnGuard();
-                        else if (i < 45)
+                        else if (i < 75)
                             SpawnInvader();
                         else
                             SpawnCollector();
-                        yield return new WaitForSeconds(0.5f);
+                        yield return new WaitForSeconds(0.4f);
                     }
                     break;
                 default:
@@ -221,7 +220,6 @@ public class Spawner : MonoBehaviour
 
     void SpawnScout()
     {
-        Debug.Log("Spawning scout");
         numEnemiesSpawned++;
         numEnemiesAlive++;
         GameObject curr = Instantiate(enemyScout, spawnPoint.position,
@@ -234,7 +232,6 @@ public class Spawner : MonoBehaviour
 
     void SpawnGuard()
     {
-        Debug.Log("Spawning guard");
         numEnemiesSpawned++;
         numEnemiesAlive++;
         GameObject curr = Instantiate(enemyGuard, spawnPoint.position,
@@ -247,7 +244,6 @@ public class Spawner : MonoBehaviour
 
     void SpawnCollector()
     {
-        Debug.Log("Spawning collector");
         numEnemiesSpawned++;
         numEnemiesAlive++;
         GameObject curr = Instantiate(enemyCollector, spawnPoint.position,
@@ -260,7 +256,6 @@ public class Spawner : MonoBehaviour
 
     void SpawnInvader()
     {
-        Debug.Log("Spawning invader");
         numEnemiesSpawned++;
         numEnemiesAlive++;
         GameObject curr = Instantiate(enemyInvader, spawnPoint.position,

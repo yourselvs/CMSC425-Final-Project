@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4037958509328658211}
   - component: {fileID: 452011530645114804}
   - component: {fileID: 1754540999727786164}
-  - component: {fileID: 1389323246874260969}
   m_Layer: 0
   m_Name: SniperTower
   m_TagString: Tower
@@ -48,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16cea2629edc76942b5af1dad5fc6541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  price: 20
+  price: 130
 --- !u!135 &452011530645114804
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -74,19 +73,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d78cb84e724cc15499b540a91b2da486, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &1389323246874260969
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6199981978604735340}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2, y: 5.8, z: 2}
-  m_Center: {x: 1, y: 2.9, z: 1}
 --- !u!1 &6199981979704176947
 GameObject:
   m_ObjectHideFlags: 0
@@ -101,7 +87,7 @@ GameObject:
   - component: {fileID: 6199981979704176945}
   m_Layer: 0
   m_Name: Base
-  m_TagString: Tower
+  m_TagString: Base
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -176,8 +162,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1.6, z: 1}
+  m_Center: {x: 0, y: 0.3, z: 0}
 --- !u!1 &6747550049926708289
 GameObject:
   m_ObjectHideFlags: 0

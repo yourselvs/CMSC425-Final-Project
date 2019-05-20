@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 4348525283943750}
   - component: {fileID: 33053609119426264}
   - component: {fileID: 23026200209309492}
-  - component: {fileID: 64144479891019752}
+  - component: {fileID: 8211789770293625081}
+  - component: {fileID: 5203253720409060494}
   - component: {fileID: 632375480531319048}
   - component: {fileID: 2452282575240437156}
   - component: {fileID: 3311114423590763975}
-  - component: {fileID: 5203253720409060494}
   m_Layer: 0
   m_Name: Robot_Collector
   m_TagString: Enemy
@@ -82,20 +82,36 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &64144479891019752
-MeshCollider:
+--- !u!136 &8211789770293625081
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1709427728825182}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 4300000, guid: 8c7e90cd8231f9a4c9936aafd7ec1fed, type: 3}
+  m_Radius: 0.4236925
+  m_Height: 1.7
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.05, z: 0}
+--- !u!54 &5203253720409060494
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1709427728825182}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &632375480531319048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,7 +124,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62e021e0ef804024e99bfd732ed73f60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 120
+  health: 450
+  loot: 4
+  spawner: {fileID: 0}
   explosion: {fileID: 100012, guid: 384371afbb4354cc9a3fc68eab303756, type: 3}
   pickup: {fileID: 1000011041813418, guid: 1a5c9c34146ebbc42af280d68f43bd19, type: 3}
 --- !u!114 &2452282575240437156
@@ -136,7 +154,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.514669
-  m_Speed: 3.5
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -148,19 +166,3 @@ NavMeshAgent:
   m_BaseOffset: -0.2
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!54 &5203253720409060494
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1709427728825182}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0

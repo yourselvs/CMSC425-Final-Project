@@ -202,7 +202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16cea2629edc76942b5af1dad5fc6541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  price: 20
+  price: 35
 --- !u!135 &9015735860240669633
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -450,7 +450,7 @@ GameObject:
   - component: {fileID: 53254499352918029}
   m_Layer: 0
   m_Name: Base
-  m_TagString: Tower
+  m_TagString: Base
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -525,8 +525,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1.5, z: 1}
+  m_Center: {x: 0, y: 0.25, z: 0}
 --- !u!1 &53254499403306128
 GameObject:
   m_ObjectHideFlags: 0

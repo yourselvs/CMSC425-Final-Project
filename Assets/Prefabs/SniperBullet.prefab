@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 30
-  speed: 50
+  speed: 40
   turnSpeed: 0
 --- !u!54 &964936538106242874
 Rigidbody:
