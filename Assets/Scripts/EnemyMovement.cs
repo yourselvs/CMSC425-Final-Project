@@ -5,10 +5,10 @@ using UnityEngine.AI;
 public class EnemyMovement : MonoBehaviour
 {
     NavMeshAgent agent;
-    public Transform goal;
+    public GameObject goal;
     public float distanceTraveled = 0;
-    public GameObject spawner;
-
+    public Spawner spawner;
+    public GameObject player;
     private Transform destination;
 
     // Start is called before the first frame update
@@ -18,9 +18,9 @@ public class EnemyMovement : MonoBehaviour
         if (agent.enabled == true)
         {
             destination = GameObject.FindWithTag("Destination").transform;
-            Debug.Log(destination);
             agent.destination = destination.position;
         }
+        player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame
@@ -29,6 +29,9 @@ public class EnemyMovement : MonoBehaviour
         distanceTraveled += Time.deltaTime * agent.velocity.magnitude;
         if (agent.remainingDistance <= 0.2f)
         {
+            //Here we can add the logic for what happens when the player 'leaks' enemies
+            player.GetComponent<MoneyController>().Invoke("EnemyEscaped", 0);
+            spawner.numEnemiesAlive--;
             Destroy(this.gameObject);
         }
     }

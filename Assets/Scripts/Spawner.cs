@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-
-    public Transform enemyPrefab;
-    public Transform enemyScout;
-    public Transform enemyInvader;
-    public Transform enemyCollector;
-    public Transform enemyGuard;
+    public GameObject enemyPrefab;
+    public GameObject enemyScout;
+    public GameObject enemyInvader;
+    public GameObject enemyCollector;
+    public GameObject enemyGuard;
     public Transform spawnPoint;
     public Transform destination;
 
     public bool isTesting = true;
     public bool waveActive = false;
+    public bool spawning = false;
+    public int numEnemiesAlive;
     public float timeBetweenWaves = 5f;
-    private float countdown = 2f;
     private int numEnemiesSpawned = 0;
 
 
@@ -25,18 +25,14 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (countdown <= 0f && waveActive)
-        {
-            StartCoroutine(SpawnWave());
-            countdown = timeBetweenWaves;
-        }
 
-        countdown -= Time.deltaTime;
     }
 
-    void StartWave()
+    public void StartWave()
     {
+        StartCoroutine(SpawnWave());
         waveActive = true;
+        spawning = true;
     }
 
     IEnumerator SpawnWave()
@@ -55,116 +51,219 @@ public class Spawner : MonoBehaviour
             switch (waveNumber)
             {
                 case 0:
-                    for (int i = 0; i < 3; i++)
+                    for (int i = 0; i < 4; i++)
                     {
                         SpawnScout();
                         yield return new WaitForSeconds(0.75f);
                     }
                     break;
                 case 1:
-                    for (int i = 0; i < 4; i++)
+                    for (int i = 0; i < 8; i++)
                     {
-                        if (i < 3)
-                            SpawnScout();
-                        else
-                            SpawnGuard();
-                        yield return new WaitForSeconds(1f);
+                        SpawnScout();
+                        yield return new WaitForSeconds(0.75f);
                     }
                     break;
                 case 2:
-                    for (int i = 0; i < 5; i++)
+                    for (int i = 0; i < 8; i++)
                     {
-                        SpawnScout();
+                        if (i < 6)
+                            SpawnScout();
+                        else
+                            SpawnGuard();
                         yield return new WaitForSeconds(0.5f);
                     }
                     break;
                 case 3:
-                    for (int i = 0; i < 5; i++)
+                    for (int i = 0; i < 10; i++)
                     {
-                        if (i < 3)
-                            SpawnInvader();
+                        if (i < 4)
+                            SpawnScout();
                         else
                             SpawnGuard();
                         yield return new WaitForSeconds(0.75f);
                     }
                     break;
                 case 4:
-                    for (int i = 0; i < 9; i++)
+                    for (int i = 0; i < 6; i++)
                     {
-                        if (i < 3)
-                            SpawnScout();
-                        else if (i < 5)
-                            SpawnGuard();
-                        else if (i < 7)
-                            SpawnInvader();
-                        else
-                            SpawnCollector();
+                        SpawnInvader();
                         yield return new WaitForSeconds(0.9f);
                     }
                     break;
-                //case 5:
-                //    for (int i = 0; i < 9; i++)
-                //    {
-                //        if (i < 3)
-                //            SpawnScout();
-                //        else if (i < 5)
-                //            SpawnGuard();
-                //        else if (i < 6)
-                //            SpawnInvader();
-                //        else
-                //            SpawnCollector();
-                //        yield return new WaitForSeconds(0.5f);
-                //    }
-                //    break;
+                case 5:
+                    for (int i = 0; i < 16; i++)
+                    {
+                        if (i < 4)
+                            SpawnScout();
+                        else if (i < 12)
+                            SpawnGuard();
+                        else
+                            SpawnInvader();
+                        yield return new WaitForSeconds(0.5f);
+                    }
+                    break;
+                case 6:
+                    for (int i = 0; i < 10; i++)
+                    {
+                        SpawnInvader();
+                        yield return new WaitForSeconds(0.5f);
+                    }
+                    break;
+                case 7:
+                    for (int i = 0; i < 30; i++)
+                    {
+                        SpawnScout();
+                        yield return new WaitForSeconds(0.5f);
+                    }
+                    break;
+                case 8:
+                    for (int i = 0; i < 25; i++)
+                    {
+                        if (i < 10)
+                            SpawnGuard();
+                        else if (i < 20)
+                            SpawnInvader();
+                        else
+                            SpawnCollector();
+                        yield return new WaitForSeconds(0.5f);
+                    }
+                    break;
+                case 9:
+                    for (int i = 0; i < 35; i++)
+                    {
+                        if (i < 15)
+                            SpawnScout();
+                        else if (i < 25)
+                            SpawnGuard();
+                        else if (i < 30)
+                            SpawnInvader();
+                        else
+                            SpawnCollector();
+                        yield return new WaitForSeconds(0.5f);
+                    }
+                    break;
+                case 10:
+                    for (int i = 0; i < 15; i++)
+                    {
+                        SpawnCollector();
+                        yield return new WaitForSeconds(0.5f);
+                    }
+                    break;
+                case 11:
+                    for (int i = 0; i < 40; i++)
+                    {
+                        SpawnGuard();
+                        yield return new WaitForSeconds(0.5f);
+                    }
+                    break;
+                case 12:
+                    for (int i = 0; i < 70; i++)
+                    {
+                        SpawnScout();
+                        yield return new WaitForSeconds(0.3f);
+                    }
+                    break;
+                case 13:
+                    for (int i = 0; i < 30; i++)
+                    {
+                        if (i < 15)
+                            SpawnInvader();
+                        else
+                            SpawnCollector();
+                        yield return new WaitForSeconds(0.4f);
+                    }
+                    break;
+                case 14:
+                    for (int i = 0; i < 100; i++)
+                    {
+                        if (i < 25)
+                            SpawnScout();
+                        else if (i < 50)
+                            SpawnGuard();
+                        else if (i < 75)
+                            SpawnInvader();
+                        else
+                            SpawnCollector();
+                        yield return new WaitForSeconds(0.4f);
+                    }
+                    break;
                 default:
                     break;
             }
         }
         waveNumber++;
-        waveActive = false;
+        spawning = false;
+    }
+
+    public void RemoveEnemy()
+    {
+        numEnemiesAlive--;
+
+        if (!spawning && numEnemiesAlive <= 0)
+        {
+            waveActive = false;
+        }
     }
 
     void SpawnEnemy()
     {
         numEnemiesSpawned++;
-        Transform curr = Instantiate(enemyPrefab, spawnPoint.position,
+        numEnemiesAlive++;
+        GameObject curr = Instantiate(enemyPrefab, spawnPoint.position,
             spawnPoint.rotation);
         curr.gameObject.name = "Enemy" + numEnemiesSpawned;
+
+        EnemyHealth health = curr.GetComponent<EnemyHealth>();
+        health.spawner = this;
     }
 
     void SpawnScout()
     {
         numEnemiesSpawned++;
-        Transform curr = Instantiate(enemyScout, spawnPoint.position,
+        numEnemiesAlive++;
+        GameObject curr = Instantiate(enemyScout, spawnPoint.position,
             spawnPoint.rotation);
         curr.gameObject.name = "Enemy" + numEnemiesSpawned;
+
+        EnemyHealth health = curr.GetComponent<EnemyHealth>();
+        health.spawner = this;
     }
 
     void SpawnGuard()
     {
         numEnemiesSpawned++;
-        Transform curr = Instantiate(enemyGuard, spawnPoint.position,
+        numEnemiesAlive++;
+        GameObject curr = Instantiate(enemyGuard, spawnPoint.position,
             spawnPoint.rotation);
         curr.gameObject.name = "Enemy" + numEnemiesSpawned;
 
+        EnemyHealth health = curr.GetComponent<EnemyHealth>();
+        health.spawner = this;
     }
 
     void SpawnCollector()
     {
         numEnemiesSpawned++;
-        Transform curr = Instantiate(enemyCollector, spawnPoint.position,
+        numEnemiesAlive++;
+        GameObject curr = Instantiate(enemyCollector, spawnPoint.position,
             spawnPoint.rotation);
         curr.gameObject.name = "Enemy" + numEnemiesSpawned;
 
+        EnemyHealth health = curr.GetComponent<EnemyHealth>();
+        health.spawner = this;
     }
 
     void SpawnInvader()
     {
         numEnemiesSpawned++;
-        Transform curr = Instantiate(enemyInvader, spawnPoint.position,
+        numEnemiesAlive++;
+        GameObject curr = Instantiate(enemyInvader, spawnPoint.position,
             spawnPoint.rotation);
         curr.gameObject.name = "Enemy" + numEnemiesSpawned;
 
+        EnemyHealth health = curr.GetComponent<EnemyHealth>();
+        health.spawner = this;
     }
 
 }
